@@ -6,7 +6,6 @@ export default function Home() {
 	return (
 		<div>
 			<Header />
-			<SideNav />
 			<OrganizedList></OrganizedList>
 		</div>
 	)
