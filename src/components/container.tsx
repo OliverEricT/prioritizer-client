@@ -60,7 +60,7 @@ export const Container: FC = () => {
 			if (item.title === '' || item.description === ''){
 				return;
 			}
-			item.id = cards.length + 1;
+			item.id = cards.length;
 			console.log(item);
 			setCards([...cards, item]);
 		}
