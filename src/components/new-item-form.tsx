@@ -6,7 +6,7 @@ const client = axios.create({
   baseURL: "https://api.themoviedb.org/3/search/",
 	headers: {
 		'accept': 'application/json',
-		'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNWU1OTJiNGUxNjBlYTQ0MWNmOWMxMDEzODZlZDdhZiIsInN1YiI6IjY0YWQ2MzEzYjY4NmI5MDEwZTBkYzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fehZG0WglvLA1r1Cj_Ymk4UZ4DXPFH9ounD2Y5ZJ8NQ'
+		'Authorization': 'Bearer '
 	}
 });
 
@@ -24,11 +24,9 @@ export const NewItemForm = ({ onSubmit, className }: NewItemFormProps) => {
 
 	const search = async (val: string) => {
 		val = val.replace(' ','%');
-		console.log(process.env.MOVIEDB)
 		const queryparams: string = 'movie?query='+val+'&include_adult=false&language=en-US&page=1';
 		const res = await client.get(queryparams);
     setSearchValues(await res.data.results);
-		console.log(searchValues);
 	}
 
 	const handleSubmit = (event: FormEvent) => {
@@ -48,6 +46,8 @@ export const NewItemForm = ({ onSubmit, className }: NewItemFormProps) => {
 		});
 		onSubmit(item);
 	}
+
+	const movies = ()
 
 	return (
 		<form onSubmit={(e) => handleSubmit(e)} className={className || ''}>
