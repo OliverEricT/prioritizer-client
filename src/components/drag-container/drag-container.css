@@ -1,0 +1,11 @@
+.float-container {
+	align-self: center;
+}
+
+.float-child {
+	align-self: center;
+	width: 50%;
+	float: left;
+	background-color: gray;
+	
+}  

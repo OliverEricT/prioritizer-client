@@ -107,7 +107,7 @@ export const DraggableCard = ({ id, item, index, moveCard }: CardProps) => {
   drag(drop(ref))
   return (
 		<div className="card" ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} onClick={() => console.log(item.id)}>
-			<img src="..." className="card-img-top" alt="..." />
+			<img src={item.img} className="card-img-top" alt="..." />
 			<div className="card-body">
 				<h5 className="card-title">{item.title}</h5>
 				<p className="card-text">{item.description}</p>
