@@ -2,6 +2,7 @@ import type { Identifier, XYCoord } from 'dnd-core'
 import type { FC } from 'react'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
+import { ListItem } from '../models/list-item'
 
 export const ItemTypes = {
   CARD: 'card',
@@ -13,13 +14,14 @@ const style = {
   marginBottom: '.5rem',
   backgroundColor: 'white',
   cursor: 'move',
+	width: '18rem'
 }
 
 export interface CardProps {
-  id: any
-  text: string
-  index: number
-  moveCard: (dragIndex: number, hoverIndex: number) => void
+  id: any;
+  item: ListItem;
+  index: number;
+  moveCard: (dragIndex: number, hoverIndex: number) => void;
 }
 
 interface DragItem {
@@ -28,7 +30,7 @@ interface DragItem {
   type: string
 }
 
-export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
+export const DraggableCard = ({ id, item, index, moveCard }: CardProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const [{ handlerId }, drop] = useDrop<
     DragItem,
@@ -104,8 +106,13 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
   return (
-    <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-      {text}
-    </div>
+		<div className="card" ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} >
+			<img src="..." className="card-img-top" alt="..." />
+			<div className="card-body">
+				<h5 className="card-title">{item.title}</h5>
+				<p className="card-text">{item.description}</p>
+				{/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
+			</div>
+		</div>
   )
 }
